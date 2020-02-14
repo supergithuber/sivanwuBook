@@ -26,3 +26,4 @@ Block主要分三类：
 
    block 内部没有引用外部变量，或者引用的是全局变量、全局静态变量、局部静态变量的Block类型都是 NSGlobalBlock 类型，存储于全局数据区，由系统管理其内存，retain、copy、release操作都无效。
 
+> Block 引用普通外部变量，都是在栈区创建的，只是用 strong、copy 修饰的 Block 会把它从栈区拷贝到堆区一份，而 weak 修饰的 Block 不会；
