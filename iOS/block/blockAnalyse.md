@@ -84,3 +84,38 @@ struct _block_impl_0 {
 2. Block 底层是用结构体来实现的，结构体 `_block_impl_0` 包含了`__block_impl` 结构体和 `__block_desc_0` 结构体。
 3. `__block_impl` 结构体中的 `FuncPtr` 函数指针，指向的就是我们的 Block 的具体实现。真正调用 Block 就是利用这个函数指针去调用的。
 4. 为什么能访问外部变量，就是因为将外部变量复制到了结构体中（上面的 int i），即自动变量会作为成员变量追加到 Block 结构体中。
+
+##### 分析具有 __block 修饰符外部变量的 Block 源代码
+
+我们知道 Block 截获外部变量是将外部变量作为成员变量追加到 Block 结构体中，但是匿名函数存在作用域的问题，这个就是为什么我们不能在 Block 内部去修改普通外部变量的原因。所有就出现了 __block 修饰符来解决这个问题。
+
+下面我们来看下 __ block 修饰的变量转换成 C++ 代码是什么样子的。
+
+```
+//Objective-C 代码
+ - (void)blockDataBlockFunction {
+ __block int a = 100;  ///在栈区
+ void (^blockDataBlock)(void) = ^{
+ a = 1000;
+ NSLog(@"%d", a);
+ };  ///在堆区
+ blockDataBlock();
+ }
+
+//C++ 代码
+struct __Block_byref_a_0 {
+  void *__isa;
+__Block_byref_a_0 *__forwarding;
+ int __flags;
+ int __size;
+ int a;
+};
+
+struct __BlockStructureViewController__blockDataBlockFunction_block_impl_0 {
+  struct __block_impl impl;
+  struct __BlockStructureViewController__blockDataBlockFunction_block_desc_0* Desc;
+  __Block_byref_a_0 *a; // by ref
+};
+```
+
+具有 __block 修饰的变量，会生成一个 Block_byref_a_0 结构体来表示外部变量，然后再追加到 Block 结构体中，这里生成 Block_byref_a_0 这个结构体大概有两个原因：一个是抽象出一个结构体，可以让多个 Block 同时引用这个外部变量；另外一个好管理，因为 Block_byref_a_0 中有个非常重要的成员变量 `forwarding` 指针，这个指针非常重要（这个指针指向 Block_byref_a_0 结构体），这里是保证当我们将 Block 从栈拷贝到堆中，修改的变量都是同一份。
