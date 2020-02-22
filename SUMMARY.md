@@ -13,6 +13,7 @@
         * [链表反转](algorithm/list/reverseList.md)
         * [倒数第N个元素](algorithm/list/findBackwardsN.md)
         * [删除指定节点](algorithm/list/deleteNode.md)
+        * [删除重复节点](algorithm/list/deleteDuplicatedNode.md)
     * [二叉树](algorithm/binarytree/README.md)
         * [遍历](algorithm/binarytree/traversal.md)
         * [深度广度搜索](algorithm/binarytree/dfs_bfs.md)
