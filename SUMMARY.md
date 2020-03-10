@@ -26,6 +26,7 @@
         * [block的原理](iOS/block/blockAnalyse.md)
     * [架构](iOS/architecture/README.md)
         * [覆盖率检测](iOS/architecture/coverageTest.md)
+        * [Mach-O文件格式分析](iOS/architecture/Mach-O_filestructure.md)
 * [关于](about/README.md)
     * [期待反馈](about/feedback_please.md)
     * [更好的写作工具](about/better_tools.md)
