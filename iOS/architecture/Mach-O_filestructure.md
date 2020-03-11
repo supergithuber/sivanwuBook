@@ -208,9 +208,9 @@ struct section { /* for 32-bit architectures */
 ```
 
 
-- `sectname：`比如`_text`、`stubs
+- `sectname：`比如`_text`、`stubs`
 
-- `segname ：`该`section`所属的`segment`，比如`__TEXT
+- `segname ：`该`section`所属的`segment`，比如`__TEXT`
 
 - `addr ：` 该`section`在内存的起始位置
 
@@ -224,4 +224,4 @@ struct section { /* for 32-bit architectures */
 
 - `nreloc：` 需要重定位的入口数量
 
-- `flags：`包含`section`的`type`和`attributes
+- `flags：`包含`section`的`type`和`attributes`
