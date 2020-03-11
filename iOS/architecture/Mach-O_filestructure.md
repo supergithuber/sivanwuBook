@@ -185,5 +185,43 @@ struct segment_command_64 { /* for 64-bit architectures */
 
 #### 3. Segment & Section
 
+有个命名的问题，如下图所示，大写的`__TEXT`代表的是`Segment`，小写的`__text`代表 `Section`
+
+![mach-O_section](./img/mach-O_section.jpg)
+
+`Section`的数据结构
+
+```c
+struct section { /* for 32-bit architectures */
+    char        sectname[16];   /* name of this section */
+    char        segname[16];    /* segment this section goes in */
+    uint32_t    addr;       /* memory address of this section */
+    uint32_t    size;       /* size in bytes of this section */
+    uint32_t    offset;     /* file offset of this section */
+    uint32_t    align;      /* section alignment (power of 2) */
+    uint32_t    reloff;     /* file offset of relocation entries */
+    uint32_t    nreloc;     /* number of relocation entries */
+    uint32_t    flags;      /* flags (section type and attributes)*/
+    uint32_t    reserved1;  /* reserved (for offset or index) */
+    uint32_t    reserved2;  /* reserved (for count or sizeof) */
+};
+```
 
 
+- `sectname：`比如`_text`、`stubs
+
+- `segname ：`该`section`所属的`segment`，比如`__TEXT
+
+- `addr ：` 该`section`在内存的起始位置
+
+- `size：` 该`section`的大小
+
+- `offset：` 该`section`的文件偏移
+
+- `align ：`字节大小对齐
+
+- `reloff ：`重定位入口的文件偏移
+
+- `nreloc：` 需要重定位的入口数量
+
+- `flags：`包含`section`的`type`和`attributes
