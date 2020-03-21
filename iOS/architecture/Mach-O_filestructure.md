@@ -209,19 +209,17 @@ struct section { /* for 32-bit architectures */
 
 
 - `sectname：`比如`_text`、`stubs`
-
 - `segname ：`该`section`所属的`segment`，比如`__TEXT`
-
 - `addr ：` 该`section`在内存的起始位置
-
 - `size：` 该`section`的大小
-
 - `offset：` 该`section`的文件偏移
-
 - `align ：`字节大小对齐
-
 - `reloff ：`重定位入口的文件偏移
-
 - `nreloc：` 需要重定位的入口数量
-
 - `flags：`包含`section`的`type`和`attributes`
+
+Mach-O动态链接：
+
+> [Mach-O 的动态链接过程](http://turingh.github.io/2016/03/10/Mach-O的动态链接/)
+>
+> [趣探 Mach-O：加载过程](https://www.jianshu.com/p/8498cec10a41)
