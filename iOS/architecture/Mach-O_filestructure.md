@@ -223,3 +223,5 @@ Mach-O动态链接：
 > [Mach-O 的动态链接过程](http://turingh.github.io/2016/03/10/Mach-O的动态链接/)
 >
 > [趣探 Mach-O：加载过程](https://www.jianshu.com/p/8498cec10a41)
+>
+> [趣探Mach-O：FishHook解析](https://www.jianshu.com/p/9e1f4d771e35)
